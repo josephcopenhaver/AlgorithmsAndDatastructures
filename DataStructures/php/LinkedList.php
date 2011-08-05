@@ -202,12 +202,16 @@ class LinkedList {
 		{
 			return $this->removeIndexEnd(abs($ridx + 1));
 		}
-		else if ($ridx === 0)
+		elseif ($this->first() === null)
+		{
+			throw new Exception("Index out of bounds!");
+		}
+		elseif ($ridx === 0)
 		{
 			return $this->shift();
 		}
 		$cidx = 0;
-		for ($idx = $this->first(); $idx !== null; $idx = $idx->right())
+		for ($idx = $this->first; $idx !== null; $idx = $idx->right())
 		{
 			if ($ridx === $cidx)
 			{
@@ -234,12 +238,16 @@ class LinkedList {
 		{
 			return $this->removeIndex(abs($ridx + 1));
 		}
-		else if ($ridx === 0)
+		elseif ($this->last() === null)
+		{
+			throw new Exception("Index out of bounds!");
+		}
+		elseif ($ridx === 0)
 		{
 			return $this->pop();
 		}
 		$cidx = 0;
-		for ($idx = $this->last(); $idx !== null; $idx = $idx->left())
+		for ($idx = $this->last; $idx !== null; $idx = $idx->left())
 		{
 			if ($ridx === $cidx)
 			{
@@ -266,7 +274,7 @@ class LinkedList {
 		{
 			return $this->insertEnd(abs($ridx + 1), $obj);
 		}
-		else if ($ridx === 0)
+		elseif ($ridx === 0)
 		{
 			return $this->unshift($obj);
 		}
@@ -295,7 +303,7 @@ class LinkedList {
 		{
 			return $this->insert(abs($ridx + 1), $obj);
 		}
-		else if ($ridx === 0)
+		elseif ($ridx === 0)
 		{
 			return $this->push($obj);
 		}
@@ -341,7 +349,7 @@ class LinkedList {
 		{
 			return $rval;
 		}
-		else if ($size < 0)
+		elseif ($size < 0)
 		{
 			throw new Exception("Invalid size!");
 		}
