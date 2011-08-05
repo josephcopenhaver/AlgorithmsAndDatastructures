@@ -56,46 +56,5 @@ class BinaryNode {
 		return $this->right;
 	}
 	
-	function remove()
-	{
-		if ($this->left !== null)
-		{
-			$this->left->right = $this->right;
-		}
-		if ($this->right !== null)
-		{
-			$this->right->left = $this->left;
-		}
-		$this->left = null;
-		$this->right = null;
-		return $this->data;
-	}
-	
-	function insertLeft($obj)
-	{
-		$rval = new BinaryNode($obj);
-		$rval->right = $this;
-		$rval->left = $this->left;
-		if ($rval->left !== null)
-		{
-			$rval->left->right = $rval;
-		}
-		$rval->right->left = $rval;
-		return $rval;
-	}
-	
-	function insertRight($obj)
-	{
-		$rval = new BinaryNode($obj);
-		$rval->left = $this;
-		$rval->right = $this->right;
-		$rval->left->right = $rval;
-		if ($rval->right !== null)
-		{
-			$rval->right->left = $rval;
-		}
-		return $rval;
-	}
-	
 }
 ?>

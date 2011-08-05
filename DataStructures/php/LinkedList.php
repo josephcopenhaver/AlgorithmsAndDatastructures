@@ -12,6 +12,51 @@ class LinkedList {
 		}
 	}
 	
+	private function remove($bNode)
+	{
+		$left = $bNode->left();
+		$right = $bNode->right();
+		if ($left !== null)
+		{
+			$left->_setRight($right);
+		}
+		if ($right !== null)
+		{
+			$right->_setLeft($left);
+		}
+		$bNode->_setLeft();
+		$bNode->_setRight();
+		return $bNode->data();
+	}
+	
+	private function insertLeft($bNode, $obj)
+	{
+		$rval = new BinaryNode($obj);
+		$left = $bNode->left();
+		if ($left !== null)
+		{
+			$rval->_setLeft($left);
+			$left->_setRight($rval);
+		}
+		$rval->_setRight($bNode);
+		$bNode->_setLeft($rval);
+		return $rval;
+	}
+	
+	private function insertRight($bNode, $obj)
+	{
+		$rval = new BinaryNode($obj);
+		$right = $bNode->right();
+		if ($right !== null)
+		{
+			$rval->_setRight($right);
+			$right->_setLeft($rval);
+		}
+		$rval->_setLeft($bNode);
+		$bNode->_setRight($rval);
+		return $rval;
+	}
+	
 	function first()
 	{
 		if ($this->first === null)
@@ -175,7 +220,7 @@ class LinkedList {
 				}
 				else
 				{
-					return $idx->remove();
+					return $this->remove($idx);
 				}
 			}
 			$cidx++;
@@ -207,7 +252,7 @@ class LinkedList {
 				}
 				else
 				{
-					return $idx->remove();
+					return $this->remove($idx);
 				}
 			}
 			$cidx++;
@@ -231,14 +276,14 @@ class LinkedList {
 		{
 			if ($ridx === $cidx)
 			{
-				$idx->insertLeft($obj);
+				$this->insertLeft($idx, $obj);
 				return $this;
 			}
 			$cidx++;
 		}
 		if ($ridx === $cidx)
 		{
-			$idx->insertRight($obj);
+			$this->insertRight($idx, $obj);
 			return $this;
 		}
 		throw new Exception("Index out of bounds!");
@@ -260,14 +305,14 @@ class LinkedList {
 		{
 			if ($ridx === $cidx)
 			{
-				$idx->insertRight($obj);
+				$this->insertRight($idx, $obj);
 				return $this;
 			}
 			$cidx++;
 		}
 		if ($ridx === $cidx)
 		{
-			$idx->insertLeft($obj);
+			$this->insertLeft($idx, $obj);
 			return $this;
 		}
 		throw new Exception("Index out of bounds!");
