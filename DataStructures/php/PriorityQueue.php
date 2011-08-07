@@ -22,8 +22,7 @@ class PriorityQueue {
 		$this->invert = $invert ? true : false;
 	}
 	
-	private function compareTo($idx1, $idx2)
-	{
+	private function compareTo($idx1, $idx2) {
 		$obj1 = $this->dataQueue[$idx1];
 		$obj2 = $this->dataQueue[$idx2];
 		if (is_numeric($obj1) && is_numeric($obj2))

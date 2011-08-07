@@ -4,16 +4,14 @@ class LinkedList {
 	private $first = null;
 	private $last = null;
 	
-	function __construct($obj = null)
-	{
+	function __construct($obj = null) {
 		if ($obj !== null)
 		{
 			$this->last = $this->first = new BinaryNode($obj);
 		}
 	}
 	
-	private function remove($bNode)
-	{
+	private function remove($bNode) {
 		$left = $bNode->left();
 		$right = $bNode->right();
 		if ($left !== null)
@@ -29,8 +27,7 @@ class LinkedList {
 		return $bNode->data();
 	}
 	
-	private function insertLeft($bNode, $obj)
-	{
+	private function insertLeft($bNode, $obj) {
 		$rval = new BinaryNode($obj);
 		$left = $bNode->left();
 		if ($left !== null)
@@ -43,8 +40,7 @@ class LinkedList {
 		return $rval;
 	}
 	
-	private function insertRight($bNode, $obj)
-	{
+	private function insertRight($bNode, $obj) {
 		$rval = new BinaryNode($obj);
 		$right = $bNode->right();
 		if ($right !== null)
@@ -57,8 +53,7 @@ class LinkedList {
 		return $rval;
 	}
 	
-	function first()
-	{
+	function first() {
 		if ($this->first === null)
 		{
 			if ($this->last !== null)
@@ -80,8 +75,7 @@ class LinkedList {
 		return $this->first;
 	}
 	
-	function last()
-	{
+	function last() {
 		if ($this->last === null)
 		{
 			if ($this->first !== null)
@@ -103,13 +97,11 @@ class LinkedList {
 		return $this->last;
 	}
 	
-	function isEmpty()
-	{
+	function isEmpty() {
 		return ($this->first === null && $this->last === null);
 	}
 	
-	function peek()
-	{
+	function peek() {
 		$first = $this->first();
 		if ($first === null)
 		{
@@ -118,8 +110,7 @@ class LinkedList {
 		return $first->data();
 	}
 	
-	function peekEnd()
-	{
+	function peekEnd() {
 		$last = $this->last();
 		if ($last === null)
 		{
@@ -128,8 +119,7 @@ class LinkedList {
 		return $last->data();
 	}
 	
-	function push($obj)
-	{
+	function push($obj) {
 		$last = $this->last();
 		if ($last === null)
 		{
@@ -142,8 +132,7 @@ class LinkedList {
 		return $this;
 	}
 	
-	function pop()
-	{
+	function pop() {
 		$last = $this->last();
 		if ($last === null)
 		{
@@ -162,8 +151,7 @@ class LinkedList {
 		return $last->data();
 	}
 	
-	function unshift($obj)
-	{
+	function unshift($obj) {
 		$first = $this->first();
 		if ($first === null)
 		{
@@ -176,8 +164,7 @@ class LinkedList {
 		return $this;
 	}
 	
-	function shift()
-	{
+	function shift() {
 		$first = $this->first();
 		if ($first === null)
 		{
@@ -196,8 +183,7 @@ class LinkedList {
 		return $first->data();
 	}
 	
-	function removeIndex($ridx)
-	{
+	function removeIndex($ridx) {
 		if ($ridx < 0)
 		{
 			return $this->removeIndexEnd(abs($ridx + 1));
@@ -232,8 +218,7 @@ class LinkedList {
 		throw new Exception("Index out of bounds!");
 	}
 	
-	function removeIndexEnd($ridx)
-	{
+	function removeIndexEnd($ridx) {
 		if ($ridx < 0)
 		{
 			return $this->removeIndex(abs($ridx + 1));
@@ -268,8 +253,7 @@ class LinkedList {
 		throw new Exception("Index out of bounds!");
 	}
 	
-	function insert($ridx, $obj)
-	{
+	function insert($ridx, $obj) {
 		if ($ridx < 0)
 		{
 			return $this->insertEnd(abs($ridx + 1), $obj);
@@ -297,8 +281,7 @@ class LinkedList {
 		throw new Exception("Index out of bounds!");
 	}
 	
-	function insertEnd($ridx, $obj)
-	{
+	function insertEnd($ridx, $obj) {
 		if ($ridx < 0)
 		{
 			return $this->insert(abs($ridx + 1), $obj);
@@ -326,8 +309,7 @@ class LinkedList {
 		throw new Exception("Index out of bounds!");
 	}
 	
-	function size()
-	{
+	function size() {
 		$size = 0;
 		$idx = $this->first();
 		while ($idx !== null)
@@ -338,8 +320,7 @@ class LinkedList {
 		return $size;
 	}
 	
-	function toArray($startIndex = 0, $size = null)
-	{
+	function toArray($startIndex = 0, $size = null) {
 		if ($size === null)
 		{
 			$size = $this->size();
