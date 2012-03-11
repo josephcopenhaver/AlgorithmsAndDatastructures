@@ -31,7 +31,7 @@ class PriorityQueue {
 			{
 				$rval = 0;
 			}
-			elseif (($obj1 < $obj2) !== $this->invert)
+			elseif (($obj1 < $obj2) != $this->invert)
 			{
 				$rval = -1;
 			}
@@ -44,11 +44,11 @@ class PriorityQueue {
 		{
 			$rval = $this->invert ? $obj2->compareTo($obj1) : $obj1->compareTo($obj2);
 		}
-		if ($rval === 0)
+		if ($rval == 0)
 		{
 			$obj1 = $this->timeQueue[$idx1];
 			$obj2 = $this->timeQueue[$idx2];
-			if ($obj1 !== $obj2)
+			if ($obj1 != $obj2)
 			{
 				if ($obj1 > $obj2)
 				{
@@ -64,7 +64,7 @@ class PriorityQueue {
 	}
 	
 	function isEmpty() {
-		return $this->size === 0;
+		return $this->size == 0;
 	}
 	
 	function size() {
@@ -90,9 +90,9 @@ class PriorityQueue {
 	private function percolateUp($idx) {
 		$swap = null;
 		$nextIdx = null;
-		while ($idx !== 0)
+		while ($idx != 0)
 		{
-			$nextIdx = floor($idx/2);
+			$nextIdx = floor(($idx-1)/2);
 			if ($this->compareTo($idx, $nextIdx) > 0)
 			{
 				$swap = $this->dataQueue[$idx];
@@ -114,7 +114,7 @@ class PriorityQueue {
 	function remove($wantArray = false) {
 		$idx = 0;
 		$rval = $wantArray ? array('data' => $this->dataQueue[$idx], 'queued_at' => $this->timeQueue[$idx]) : $this->dataQueue[$idx];
-		if ($this->size === 1)
+		if ($this->size == 1)
 		{
 			//speedup: just clear everything out and return
 			unset($this->dataQueue[0]);
@@ -127,7 +127,7 @@ class PriorityQueue {
 		$nextIdxR = 2;
 		while ($nextIdx < $this->size)
 		{
-			if ($nextIdx === $maxIdx)
+			if ($nextIdx == $maxIdx)
 			{
 				//speedup: end perfectly finishes off the tree
 				$this->dataQueue[$idx] = $this->dataQueue[$nextIdx];
@@ -152,7 +152,7 @@ class PriorityQueue {
 			$nextIdx = $nextIdxR - 1;
 		}
 		$this->size--;
-		if ($idx !== $maxIdx)
+		if ($idx != $maxIdx)
 		{
 			$this->fillLeafVoid($idx);
 		}
