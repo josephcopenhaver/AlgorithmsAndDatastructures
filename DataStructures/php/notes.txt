@@ -1,0 +1,1 @@
+The sorting of a priority queue's elements can occur in place very quickly, lets implement it and see if it an be made faster than dupe-sort.
